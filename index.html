@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hameed Tools Hub</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial;
+}
+
+body{
+background:linear-gradient(135deg,#0f172a,#020617);
+color:white;
+}
+
+/* Header */
+
+header{
+text-align:center;
+padding:25px;
+font-size:30px;
+font-weight:bold;
+background:linear-gradient(90deg,#38bdf8,#9333ea);
+}
+
+/* Search */
+
+.search{
+text-align:center;
+margin:20px;
+}
+
+.search input{
+width:85%;
+max-width:400px;
+padding:12px;
+border-radius:25px;
+border:none;
+outline:none;
+}
+
+/* Tools Grid */
+
+.container{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+padding:20px;
+}
+
+/* Card */
+
+.card{
+background:#1e293b;
+border-radius:12px;
+padding:25px;
+text-align:center;
+transition:0.4s;
+}
+
+.card:hover{
+transform:translateY(-10px) scale(1.03);
+box-shadow:0 0 20px #38bdf8;
+}
+
+.card h3{
+margin-bottom:10px;
+}
+
+.card p{
+font-size:14px;
+color:#cbd5f5;
+}
+
+.card button{
+margin-top:15px;
+padding:10px 20px;
+border:none;
+border-radius:20px;
+background:linear-gradient(90deg,#38bdf8,#9333ea);
+color:white;
+cursor:pointer;
+}
+
+/* Admin Panel */
+
+.adminPanel{
+display:none;
+background:#020617;
+padding:20px;
+margin:20px;
+border-radius:10px;
+}
+
+.adminPanel input{
+width:100%;
+padding:10px;
+margin:8px 0;
+border:none;
+border-radius:6px;
+}
+
+.adminPanel button{
+padding:10px 20px;
+background:#38bdf8;
+border:none;
+border-radius:6px;
+cursor:pointer;
+}
+
+/* Footer */
+
+footer{
+text-align:center;
+padding:15px;
+background:#020617;
+margin-top:30px;
+}
+
+.adminBtn{
+margin-top:10px;
+background:#9333ea;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+🚀 Hameed Tools Hub
+</header>
+
+<div class="search">
+<input type="text" id="search" placeholder="Search tools..." onkeyup="searchTools()">
+</div>
+
+<div class="container" id="tools">
+
+<div class="card">
+<h3>FB Downloader</h3>
+<p>Download Facebook videos easily</p>
+<button onclick="window.open('https://hameed-ullah-fb-downloader.vercel.app')">
+Open Tool
+</button>
+</div>
+
+<div class="card">
+<h3>Love Heart Tool</h3>
+<p>Create love heart animation</p>
+<button onclick="window.open('https://loveheart-mu.vercel.app')">
+Open Tool
+</button>
+</div>
+
+<div class="card">
+<h3>Hameed Ullah TikTok Downloader</h3>
+<p>Download TikTok videos without watermark</p>
+<button onclick="window.open('https://hameedullahtiktokdownloder.netlify.app/')">
+Open Tool
+</button>
+</div>
+
+</div>
+
+
+<!-- ADMIN PANEL -->
+
+<div class="adminPanel" id="adminPanel">
+
+<h2>Add New Tool</h2>
+
+<input type="text" id="toolName" placeholder="Tool Name">
+
+<input type="text" id="toolDesc" placeholder="Tool Description">
+
+<input type="text" id="toolLink" placeholder="Tool Link">
+
+<button onclick="addTool()">Add Tool</button>
+
+</div>
+
+
+<footer>
+
+© 2026 Hameed Ullah | Tools Hub
+
+<br><br>
+
+<button class="adminBtn" onclick="adminLogin()">
+Admin Panel
+</button>
+
+</footer>
+
+<script>
+
+function searchTools(){
+let input=document.getElementById("search").value.toLowerCase();
+let cards=document.querySelectorAll(".card");
+
+cards.forEach(card=>{
+let text=card.innerText.toLowerCase();
+card.style.display=text.includes(input) ? "block" : "none";
+});
+}
+
+
+function adminLogin(){
+
+let pass=prompt("Enter Admin Password");
+
+if(pass=="admin123"){
+
+document.getElementById("adminPanel").style.display="block";
+
+}else{
+
+alert("Wrong Password");
+
+}
+
+}
+
+
+function addTool(){
+
+let name=document.getElementById("toolName").value;
+
+let desc=document.getElementById("toolDesc").value;
+
+let link=document.getElementById("toolLink").value;
+
+let container=document.getElementById("tools");
+
+let card=document.createElement("div");
+
+card.className="card";
+
+card.innerHTML=`
+<h3>${name}</h3>
+<p>${desc}</p>
+<button onclick="window.open('${link}')">
+Open Tool
+</button>
+`;
+
+container.appendChild(card);
+
+}
+
+</script>
+
+</body>
+</html>
